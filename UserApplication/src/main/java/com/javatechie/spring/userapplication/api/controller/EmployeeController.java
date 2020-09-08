@@ -19,14 +19,22 @@ import com.javatechie.spring.userapplication.api.model.Department;
 import com.javatechie.spring.userapplication.api.model.Employee;
 import com.javatechie.spring.userapplication.api.service.EmployeeService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 @RestController
 @RequestMapping("/employee/api")
 public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
+	
+	
+	@ApiOperation(value="Saving Employee",
+			       notes="Provide Employee object for saving the Employee",
+			       response = Employee.class)
 	@PostMapping("/saveEmployee")
-	public ResponseEntity<List<Employee>> saveEmployee(@RequestBody com.javatechie.spring.userapplication.api.dto.Employee employee )
+	public ResponseEntity<List<Employee>> saveEmployee(@ApiParam(value="Employee Object required",required = true) @RequestBody com.javatechie.spring.userapplication.api.dto.Employee employee )
 	{
 		try {
 		return new ResponseEntity<List<Employee>>(employeeService.saveEmployee(employee),HttpStatus.OK);

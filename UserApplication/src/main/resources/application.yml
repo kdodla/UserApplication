@@ -3,7 +3,7 @@ server:
 
 spring:  
   application:
-    name: userApplication
+    name: UserApplication
   logging:
     pattern:
       console: "%msg%n"
